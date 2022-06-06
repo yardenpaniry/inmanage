@@ -22,6 +22,8 @@ class Database
       return false;
     }
   }
+
+  
   public function select($table, $row = "*", $where = null, $order = null)
   {
     $query = 'SELECT ' . $row . ' FROM ' . $table;
@@ -69,6 +71,8 @@ class Database
       return false;
     }
   }
+
+
   public function update($table, $rows, $where)
   {
     $update = 'UPDATE ' . $table . ' SET ' . $rows . ' WHERE ' . $where;

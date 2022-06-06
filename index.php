@@ -78,11 +78,7 @@ include 'Database.php';
             <td>' . $row["id"] . '</td>
             <td>' . $row["title"] . '</td>
             <td>' . $row["body"] . '</td>
-            </tr>
-           '; 
-
-
-
+            </tr>'; 
     }
 
     echo '<h3>Posts table</h3><br />';
@@ -93,8 +89,7 @@ include 'Database.php';
       <th>id</th>
       <th>title</th>
       <th>body</th>
-      </tr>
-  ';
+      </tr>';
     echo $table_data;
     echo '</table>';
 
