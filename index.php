@@ -1,6 +1,9 @@
 <?php
 include 'Database.php';
 ?>
+<style>
+    <?php include 'style.css'; ?>
+</style>
 <html>
 
 <head>
@@ -78,10 +81,10 @@ include 'Database.php';
             <td>' . $row["id"] . '</td>
             <td>' . $row["title"] . '</td>
             <td>' . $row["body"] . '</td>
-            </tr>'; 
+            </tr>';
     }
 
-    echo '<h3>Posts table</h3><br />';
+    echo '<h1>Posts table</h1><br />';
     echo '
     <table class="table table-bordered">
       <tr>
@@ -94,7 +97,7 @@ include 'Database.php';
     echo '</table>';
 
 
-    echo '<h3>Users table</h3><br />';
+    echo '<h1>Users table</h1><br />';
     echo '
     <table class="table table-bordered">
       <tr>

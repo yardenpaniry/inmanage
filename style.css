@@ -1,0 +1,53 @@
+
+.social {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    gap: 1%;
+    column-gap: 5%;
+}
+
+img {
+    height: 50px;
+    width: 50px;
+}
+
+.user {
+    display: flex;
+    gap: 4%;
+    flex-direction: row;
+    border: solid;
+    padding: 17px;
+    font-family: calibri;
+}
+p {
+    margin: 0;
+}
+.title {
+    font-weight: bold;
+}
+tbody {
+    font-family: calibri;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;} 
+tr:hover {background-color: #ddd;}
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+  text-align: center;
+}
