@@ -106,8 +106,7 @@ include 'Database.php';
       <th >user id </th>
       <th >name</th>
       <th >email</th>
-      </tr>
-  ';
+      </tr>';
     echo $table_data_users;
     echo '</table>';
 
