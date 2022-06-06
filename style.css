@@ -1,4 +1,6 @@
-
+* {
+    font-family: calibri;
+}
 .social {
     display: grid;
     grid-template-columns: 30% 30% 30%;
@@ -24,6 +26,7 @@ p {
 }
 .title {
     font-weight: bold;
+    padding-top: 4%;
 }
 tbody {
     font-family: calibri;

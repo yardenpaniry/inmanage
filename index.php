@@ -73,7 +73,7 @@ include 'Database.php';
         $queryArray =  array($row["userId"], $row["id"], $row["title"], $row["body"]);
         $con->insert("posts", $queryArray, "userId, id, title, body");
 
-        $con->update("users", "`active`='1'", "userId = " . $row["userId"]);
+        $con->update("users", "`active`='1'", "userId = " . $row["userId"]); //change active to true when there is post of users
 
         $table_data .= '
             <tr>
@@ -111,7 +111,83 @@ include 'Database.php';
     //get pic from url 
     $image = 'https://cdn2.vectorstock.com/i/1000x1000/23/81/default-avatar-profile-icon-vector-18942381.jpgs';
     $imageData = base64_encode(file_get_contents($image));
-    echo '<img src="data:image/jpeg;base64,' . $imageData . '">';
+
+
+    $result = $con->select('users', "*", "`active`='1'");  //get just the users that active
+
+    if (mysqli_num_rows($result) > 0) {
+
+        $strPrint = "<div class='social'>";
+        // output data of each row
+        while ($row = mysqli_fetch_assoc($result)) {
+            $strPrint .=  "<div class='user'>";
+            $strPrint .= '<img src="data:image/jpeg;base64,' . $imageData . '">';
+            $strPrint .= "<div class='userInfo'>
+                            <div class='title'>id: </div>
+                                <p> " . $row["userId"] . "</p>
+                            <div class='title'>Name: </div> 
+                                <p>" . $row["name"] . "</p>
+                            <div class='title'>email: </div>
+                                <p> " . $row["email"] . "</p>";
+
+            $strPrint .= "<div class='posts'><h2>posts: </h2>";
+
+            $posts = $con->select('posts', "*", "`userId`='" . $row["userId"] . "'");
+
+            while ($post = mysqli_fetch_assoc($posts)) {
+
+                $strPrint .= "<div class='post'><div class='title'> post number: </div>";
+                $strPrint .= " <p> " . $post["id"] . "</p>";
+                $strPrint .= "<div class='title'>title: </div>";
+                $strPrint .= " <p> " . $post["title"] . "</p>";
+                $strPrint .= "<div class='title'>body: </div>";
+                $strPrint .= "<p> " . $post["body"] . "</p> </div>";
+            }
+
+            $strPrint .= "</div></div></div>";
+        }
+
+        $strPrint .=  "</div>";
+        echo $strPrint;
+    } else {
+        echo "no results";
+    }
+
+    echo "<div class='part6'>";
+
+    $result = $con->select('users', "*", "MONTH(birthday) = MONTH(NOW())");  //get just the users that have birthday this month
+
+    if (mysqli_num_rows($result) > 0) {
+
+        $strPrint = "<h1>celebrating a birthday this month:</h1>
+                        <div class='birthdayPart'>";
+        // output data of each row
+        while ($row = mysqli_fetch_assoc($result)) {
+
+
+            $post = $con->select('posts', "id", "userId=" . $row["userId"],  " id DESC LIMIT 1");
+
+            if (mysqli_num_rows($post) > 0) {
+
+                $strPrint .= "<div class='birthdayPeople'>
+                            <div class=''>id: </div>
+                                 " . $row["userId"] . "
+                            <div class=''>Name: </div> 
+                                " . $row["name"];
+                $row = mysqli_fetch_assoc($post);
+                $strPrint .= "<br>last post ID: " . $row["id"];
+            }
+
+            $strPrint .= "</div>";
+        }
+        $strPrint .= "</div>";
+        echo $strPrint;
+    } else {
+        echo "no results";
+    }
+
+    echo "</div>";
+
 
     ?>
 </body>

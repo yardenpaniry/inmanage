@@ -23,7 +23,7 @@ class Database
     }
   }
 
-  
+
   public function select($table, $row = "*", $where = null, $order = null)
   {
     $query = 'SELECT ' . $row . ' FROM ' . $table;
@@ -31,7 +31,7 @@ class Database
       $query .= ' WHERE ' . $where;
     }
     if ($order != null) {
-      $query .= ' ORDER BY ';
+      $query .= ' ORDER BY ' . $order;
     }
     $Result = $this->DbCon->query($query);
     return $Result;
