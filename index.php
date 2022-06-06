@@ -164,7 +164,6 @@ include 'Database.php';
         // output data of each row
         while ($row = mysqli_fetch_assoc($result)) {
 
-
             $post = $con->select('posts', "id", "userId=" . $row["userId"],  " id DESC LIMIT 1");
 
             if (mysqli_num_rows($post) > 0) {
@@ -188,6 +187,33 @@ include 'Database.php';
 
     echo "</div>";
 
+    echo "<div class='part7'>";
+
+    $queryArray = "
+    SELECT COUNT(date)  AS postsCount, date
+    FROM posts
+    GROUP BY date
+    ORDER BY COUNT(date) DESC;
+    ";
+    $result = $con->DbCon->query($queryArray);
+    
+    if (mysqli_num_rows($result) > 0) {
+        $strPrint = "<table class=''> 
+        <tr>
+            <th >date </th>
+            <th >postsCount</th>
+            </tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            $strPrint .= "<tr>
+            <td>" . $row['date'] . "</td>
+            <td>" . $row['postsCount'] . "</td>
+            </tr></table>";
+
+        }
+    }
+    echo $strPrint;
+
+    echo "</div>";
 
     ?>
 </body>
