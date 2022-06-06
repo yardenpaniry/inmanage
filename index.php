@@ -108,6 +108,11 @@ include 'Database.php';
     echo $table_data_users;
     echo '</table>';
 
+    //get pic from url 
+    $image = 'https://cdn2.vectorstock.com/i/1000x1000/23/81/default-avatar-profile-icon-vector-18942381.jpgs';
+    $imageData = base64_encode(file_get_contents($image));
+    echo '<img src="data:image/jpeg;base64,' . $imageData . '">';
+
     ?>
 </body>
 
